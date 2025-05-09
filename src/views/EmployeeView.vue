@@ -2,7 +2,7 @@
   <TopBar :title="title"/>
   <div class="search">
     <el-form :inline="true" :model="search_form" class="search_form">
-      <el-form-item label="姓名">
+      <el-form-item label="姓名:">
         <el-input
             v-model="search_form.name"
             placeholder="请输入员工名称"
@@ -11,7 +11,7 @@
             style="width: 200px"
         />
       </el-form-item>
-      <el-form-item label="性别">
+      <el-form-item label="性别:">
         <el-select
             v-model="search_form.gender"
             placeholder="请选择"
@@ -47,7 +47,7 @@
   </div>
 
   <div class="table">
-    <el-table :data="data.tableData" border>
+    <el-table :data="data.tableData" border :header-cell-style="{ fontSize: '18px' }">
       <el-table-column prop="name" label="姓名" width="150" align="center" />
       <el-table-column prop="image" label="图片" width="120" align="center" >
         <template #default="scope">
@@ -69,8 +69,8 @@
       <el-table-column prop="updateTime" label="最后操作时间" width="200" align="center" />
       <el-table-column label="操作" min-width="120" align="center">
         <template #default="scope">
-          <el-button link type="primary" size="small" @click="handleEdit(scope.row)">编辑</el-button>
-          <el-button link type="primary" size="small" @click="handleDelete(scope.row)">删除</el-button>
+          <el-button link type="primary" size="small" @click="handleEdit(scope.row)" style="font-size: 16px">编辑</el-button>
+          <el-button link type="primary" size="small" @click="handleDelete(scope.row)" style="font-size: 16px; color: red">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -346,11 +346,7 @@ const handleEdit = (row) => {
 
 const editSave = () => {
   console.log(data.form)
-  const payload = {
-    ...data.form,
-    gender: data.form.gender === "男" ? 1 : 2, 
-  }
-  request.put('employee/update', payload).then(res => {
+  request.put('employee/update', data.form).then(res => {
     console.log(res)
 
     if(res.code === '200'){

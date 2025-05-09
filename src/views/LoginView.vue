@@ -70,7 +70,7 @@ const login = () => {
           console.log(res)
           ElMessage.success(res.msg)
           setTimeout(() => {
-            router.push('/department')
+            router.push('/manageSys/department')
           }, 500)
 
         } else {

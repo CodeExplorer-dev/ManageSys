@@ -9,7 +9,11 @@
   </div>
 
   <div class="table">
-    <el-table :data="data.tableData" border>
+    <el-table 
+      :data="data.tableData" 
+      border
+      :header-cell-style="{ fontSize: '18px' }"
+    >
       <el-table-column label="序号" width="150" align="center">
         <template #default="{ $index }">
           {{ (data.pageNum - 1) * data.pageSize + $index + 1 }}
@@ -19,10 +23,10 @@
       <el-table-column prop="updateTime" label="最后操作时间" width="300" align="center"/>
       <el-table-column label="操作" min-width="200" align="center">
         <template #default="scope">
-          <el-button link type="primary" size="small" @click="handleEdit(scope.row)">
+          <el-button link type="primary" size="small" @click="handleEdit(scope.row)" style="font-size: 16px">
             编辑
           </el-button>
-          <el-button link type="primary" size="small" @click="handleDelete(scope.row)">删除</el-button>
+          <el-button link type="primary" size="small" @click="handleDelete(scope.row)" style="font-size: 16px; color: red">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -51,7 +55,6 @@
       v-model="data.editDeptVisible"
       width="500"
       align-center
-      show-close="false"
   >
     <TopBar title="编辑部门"></TopBar>
     <el-form-item label="部门名称" class="form_container">
@@ -93,10 +96,6 @@ import request from "@/utils/request.js";
 import {ElMessage} from "element-plus";
 
 const title = ref("部门管理")
-
-// const addDeptVisible = ref(false)
-// const editDeptVisible = ref(false)
-// const deleteDeptVisible = ref(false)
 
 const data = reactive({
   tableData: [],

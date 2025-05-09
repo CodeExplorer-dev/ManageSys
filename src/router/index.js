@@ -11,31 +11,32 @@ const routes = [
     redirect: "/login"
   },
   {
-    path: '/department',
+    path: '/manageSys',
     component: () => import('../layout/MainLayout.vue'),
+    redirect: 'department',
     children:[
       {
-        path: '/class',
+        path: 'class',
         name: 'ClassManage',
         component: () => import('../views/ClassView.vue')
       },
       {
-        path: '/student',
+        path: 'student',
         name: 'StudentManage',
         component: () => import('../views/StudentView.vue')
       },
       {
-        path: '/department',
+        path: 'department',
         name: 'DepartmentManage',
         component: () => import('../views/DepartmentView.vue')
       },
       {
-        path: '/employee',
+        path: 'employee',
         name: 'EmployeeManage',
         component: () => import('../views/EmployeeView.vue')
       },
       {
-        path: '/profile',
+        path: 'profile',
         name: 'Profile',
         component: () => import('../views/ProfileView.vue')
       }

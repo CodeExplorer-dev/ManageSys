@@ -3,7 +3,7 @@
   <TopBar :title="title"/>
   <div class="search">
     <el-form :inline="true" :model="search_form" class="search_form">
-      <el-form-item label="班级名称">
+      <el-form-item label="班级名称:">
         <el-input
             v-model="search_form.className"
             placeholder="请输入班级名称"
@@ -11,7 +11,7 @@
             class="search_input"
         />
       </el-form-item>
-      <el-form-item label="结课时间">
+      <el-form-item label="结课时间:">
         <el-date-picker
             v-model="search_form.date"
             type="datetimerange"
@@ -39,7 +39,7 @@
   </div>
 
   <div class="table">
-    <el-table :data="data.tableData" border>
+    <el-table :data="data.tableData" border :header-cell-style="{ fontSize: '18px' }">
       <el-table-column label="序号" width="150" align="center">
         <template #default="{ $index }">
           {{ (data.pageNum - 1) * data.pageSize + $index + 1 }}
@@ -50,12 +50,12 @@
       <el-table-column prop="start" label="开课时间" width="200" align="center" />
       <el-table-column prop="end" label="结课时间" width="200" align="center" />
       <el-table-column prop="teacher" label="班主任" width="120" align="center" />
-      <el-table-column label="操作" min-width="120" align="center">
+      <el-table-column label="操作" min-width="130" align="center">
         <template #default="scope">
-          <el-button link type="primary" size="small" @click="handleEdit(scope.row)">
+          <el-button link type="primary" size="small" @click="handleEdit(scope.row)" style="font-size: 16px">
             编辑
           </el-button>
-          <el-button link type="primary" size="small" @click="handleDelete(scope.row)">删除</el-button>
+          <el-button link type="primary" size="small" @click="handleDelete(scope.row)" style="font-size: 16px; color: red">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

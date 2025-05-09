@@ -79,22 +79,22 @@
   </div>
 
   <div class="table">
-    <el-table :data="data.tableData" border @selection-change="handleSectionChange">
+    <el-table :data="data.tableData" border @selection-change="handleSectionChange" :header-cell-style="{ fontSize: '18px' }">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column prop="name" label="姓名" width="100" align="center" />
+      <el-table-column prop="name" label="姓名" width="85" align="center" />
       <el-table-column prop="num" label="学号" width="150" align="center" />
       <el-table-column prop="className" label="班级" width="150" align="center" />
       <el-table-column prop="gender" label="性别" width="80" align="center" :formatter="formatGender"/>
       <el-table-column prop="phone" label="手机号" width="150" align="center" />
       <el-table-column prop="degree" label="最高学历" width="100" align="center" :formatter="formatDegree"/>
-      <el-table-column prop="count" label="违纪次数" width="90" align="center" />
-      <el-table-column prop="point" label="违纪扣分" width="90" align="center" />
+      <el-table-column prop="count" label="违纪次数" width="100" align="center" />
+      <el-table-column prop="point" label="违纪扣分" width="100" align="center" />
       <el-table-column prop="updateTime" label="最后操作时间" width="200" align="center" />
-      <el-table-column label="操作" min-width="120" align="center">
+      <el-table-column label="操作" min-width="150" align="center">
         <template #default="scope">
-          <el-button link type="primary" size="small" @click="handleEdit(scope.row)">编辑</el-button>
-          <el-button link type="primary" size="small" @click="handlePoint(scope.row)">违纪</el-button>
-          <el-button link type="primary" size="small" @click="handleDelete(scope.row)">删除</el-button>
+          <el-button link type="primary" size="small" @click="handleEdit(scope.row)" style="font-size: 16px">编辑</el-button>
+          <el-button link type="primary" size="small" @click="handlePoint(scope.row)" style="font-size: 16px; color: orange">违纪</el-button>
+          <el-button link type="primary" size="small" @click="handleDelete(scope.row)" style="font-size: 16px; color: red">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -613,7 +613,7 @@ const formatDegree = (row, column, cellValue) => {
 }
 
 .table{
-  width: 1310px;
+  width: 1331px;
   margin-top: 2rem;
   margin-left: 2rem;
 }
