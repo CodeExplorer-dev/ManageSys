@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ManageSys.mapper.StudentMapper">
+    <select id="selectAll" resultType="com.ManageSys.entity.Student">
+        select * from `student`
+        <where>
+            <if test="name != null">
+                AND name like concat('%',#{name},'%')
+            </if>
+            <if test="num != null">
+                AND num like concat('%',#{num},'%')
+            </if>
+            <if test="degree != null">
+                AND degree like concat('%',#{degree},'%')
+            </if>
+            <if test="className != null">
+                AND class_name like concat('%',#{className},'%')
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="com.ManageSys.entity.Student">
+        insert into `student` (name, num, class_name, gender, phone, degree)
+        values (#{name}, #{num}, #{className}, #{gender}, #{phone}, #{degree})
+    </insert>
+
+    <update id="updateById" parameterType="com.ManageSys.entity.Student">
+        update `student`
+        set name = #{name}, num = #{num}, class_name = #{className}, gender = #{gender}, phone = #{phone}, degree = #{degree}
+        where id = #{id}
+    </update>
+
+    <update id="point" parameterType="java.lang.Integer">
+        update `student`
+        set point = point + #{point},
+            count = count + 1
+        where id = #{id}
+    </update>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ManageSys.mapper.ClassMapper">
+    <select id="selectAll" resultType="com.ManageSys.entity.Class">
+        select * from `class`
+        <where>
+            <if test="className != null">
+                class_name like concat('%',#{className},'%')
+            </if>
+            <if test="start != null">
+                AND `start` between #{start} AND #{end}
+                <if test="end != null">
+                    AND`end` between #{start} AND #{end}
+                </if>
+            </if>
+
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="com.ManageSys.entity.Class">
+        insert into `class` (class_name, class_room, start, end, teacher)
+        values (#{className}, #{classRoom},#{start}, #{end}, #{teacher})
+    </insert>
+
+    <update id="updateById" parameterType="com.ManageSys.entity.Class">
+        update `class` set class_name = #{className}, class_room = #{classRoom}, start = #{start}, end = #{end}, teacher = #{teacher}
+        where id = #{id}
+    </update>
+</mapper>
